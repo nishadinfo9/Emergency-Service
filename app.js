@@ -10,15 +10,17 @@ const loveData = document.querySelector("#loveData");
 
 let copyCount = 0;
 let loveCount = 0;
+let coinCount = 100;
 
 // copy functionality handle
 // copy count setup
 copyBtn.forEach((copy) => {
   copy.addEventListener("click", () => {
-    copyBtn.forEach((btn) => btn.classList.remove("bg-gray-500"));
-    copy.classList.add("bg-gray-500");
     const card = copy.closest(".card");
     const text = card.querySelector(".dial").innerText;
+    alert(`✅ Number is copied: ${text}`)
+    // copyBtn.forEach((btn) => btn.classList.remove("bg-gray-300"));
+    // copy.classList.add("bg-gray-300");
     window.navigator.clipboard.writeText(text);
     copyCount++;
     copyData.innerText = `${copyCount} copy`;
@@ -38,14 +40,16 @@ let messages = [];
 // notifications for call
 callBtn.forEach((call) => {
   call.addEventListener("click", () => {
-    const coinsValue = parseInt(coins.innerText);
+    // const coinsValue = parseInt(coins.innerText);
 
     const card = call.closest(".card");
     const nofifications = card.querySelector(".nofifications").innerText;
     const dialCode = card.querySelector(".dial").innerText;
 
     // check value
-    if (coinsValue > 20) {
+    if (coinCount > 20) {
+      coinCount -= 20
+      coins.innerText = coinCount
       alert(`📞 Calling ${nofifications} : ${dialCode}`);
     } else {
       alert(
