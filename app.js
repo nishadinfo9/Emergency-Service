@@ -18,7 +18,7 @@ copyBtn.forEach((copy) => {
   copy.addEventListener("click", () => {
     const card = copy.closest(".card");
     const text = card.querySelector(".dial").innerText;
-    alert(`✅ Number is copied: ${text}`)
+    alert(`✅ Number is copied: ${text}`);
     // copyBtn.forEach((btn) => btn.classList.remove("bg-gray-300"));
     // copy.classList.add("bg-gray-300");
     window.navigator.clipboard.writeText(text);
@@ -47,26 +47,25 @@ callBtn.forEach((call) => {
     const dialCode = card.querySelector(".dial").innerText;
 
     // check value
-    if (coinCount > 20) {
-      coinCount -= 20
-      coins.innerText = coinCount
-      alert(`📞 Calling ${nofifications} : ${dialCode}`);
-    } else {
+    if (coinCount < 20) {
       alert(
         "❌ You do not have sufficient coin. You need at least 20 coins to make a call"
       );
-    }
+      
+    } else {
+      coinCount -= 20;
+      coins.innerText = coinCount;
+      alert(`📞 Calling ${nofifications} : ${dialCode}`);
+      const date = {
+        dial: dialCode,
+        msg: nofifications,
+        date: new Date().toLocaleTimeString(),
+      };
+      messages.push(date);
 
-    const date = {
-      dial: dialCode,
-      msg: nofifications,
-      date: new Date().toLocaleTimeString(),
-    };
-    messages.push(date);
+      const div = document.createElement("div");
 
-    const div = document.createElement("div");
-
-    div.innerHTML = `
+      div.innerHTML = `
         <div class="mt-5 flex flex-col ">
                 <div class="flex items-center justify-between rounded-lg p-2 gap-5 bg-slate-200">
                 <div>
@@ -79,7 +78,8 @@ callBtn.forEach((call) => {
             </div>
             </div>
         `;
-    nofificationBoxes.appendChild(div);
+      nofificationBoxes.appendChild(div);
+    }
   });
 });
 
