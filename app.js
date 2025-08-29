@@ -67,13 +67,15 @@ callBtn.forEach((call) => {
     const div = document.createElement("div");
 
     div.innerHTML = `
-        <div class="mt-5 flex flex-col gap-3">
-                <div class="flex items-center justify-between rounded-lg p-2  bg-slate-200">
+        <div class="mt-5 flex flex-col ">
+                <div class="flex items-center justify-between rounded-lg p-2 gap-5 bg-slate-200">
                 <div>
-                    <h3 class="text-sm md:text-md font-semibold">${date.msg}</h3>
-                    <p class="text-xs md:text-sm font-normal">${date.dial}</p>
+                    <h3 class="text-sm md:text-md font-medium">${date.msg}</h3>
+                    <p class="text-xs md:text-sm font-bold mt-1">${date.dial}</p>
                 </div>
+                <div>
                 <p class="text-xs md:text-sm font-medium">${date.date}</p>
+                </div>
             </div>
             </div>
         `;
